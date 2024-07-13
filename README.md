@@ -220,7 +220,7 @@ $username = $request->input($this->username());
 
 
 ### <!-- Editing AppServiceProvider --!>
->####8. Open /app/Providers/AppServiceProvider.php
+>#### 9. Open /app/Providers/AppServiceProvider.php
 
 >/app/Providers/AppServiceProvider.php
 >#### Insert this codes
@@ -266,7 +266,7 @@ $username = $request->input($this->username());
 
 
 ### <!-- Editing app config --!>
->#### 9. Open /config/app.php
+>#### 10. Open /config/app.php
 
 >/config/app.php
 >#### Insert this codes
@@ -292,7 +292,7 @@ $username = $request->input($this->username());
 
 
 ### <!-- Editing auth routes --!>
->#### 8. Open /routes/auth.php
+>#### 11. Open /routes/auth.php
 
 >/routes/auth.php
 >#### Insert this codes
@@ -307,7 +307,7 @@ $username = $request->input($this->username());
 
 
 ### <!-- Editing services --!>
->#### 10. Open /config/services.php
+>#### 12. Open /config/services.php
 
 >/config/services.php
 >#### Insert this codes
@@ -328,7 +328,7 @@ $username = $request->input($this->username());
 
 
 ### <!-- Updating the default layout --!>
->#### 11. Open the /resources/themes/pterodactyl/auth/login.blade.php
+>#### 13. Open the /resources/themes/pterodactyl/auth/login.blade.php
 
 >/resources/themes/pterodactyl/auth/login.blade.php
 >#### Insert This Codes
