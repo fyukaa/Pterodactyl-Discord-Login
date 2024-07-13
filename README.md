@@ -1,5 +1,7 @@
-<!-- Upload files --!>
-1. Drag all the given files in the /var/www/pterodactyl directory.
+# How To Install?
+
+### <!-- Upload files --!>
+> #### 1. Drag all the given files in the /var/www/pterodactyl directory.
 
 
 <!-- Downloading required packages --!>
