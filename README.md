@@ -79,43 +79,43 @@
 
 > #### Under:
 
-UserRepositoryInterface $repository,
+> UserRepositoryInterface $repository,
 
 
 
 
-/app/Http/Controllers/Auth/LoginController.php
-Insert this codes
+> /app/Http/Controllers/Auth/LoginController.php
+> #### Insert this codes
 
 * @param UserCreationService $creationService
 
-Under:
+> Under:
 
 * @param \Pterodactyl\Contracts\Repository\UserRepositoryInterface $repository
 
 
 
 
-/app/Http/Controllers/Auth/LoginController.php
-Insert this codes
+> /app/Http/Controllers/Auth/LoginController.php
+>#### Insert this codes
 
-$this->creationService = $creationService;
+> $this->creationService = $creationService;
 
-Under:
+> #### Under:
 
-$this->repository = $repository;
-
-
+> $this->repository = $repository;
 
 
-/app/Http/Controllers/Auth/LoginController.php
-Insert this codes
 
-if($request->input("discord-sso")) {
-    return $this->redirectToProvider();
-}
 
-Above:
+> /app/Http/Controllers/Auth/LoginController.php
+>#### Insert this codes
+
+>if($request->input("discord-sso")) {
+>    return $this->redirectToProvider();
+>}
+
+> #### Above:
 
 $username = $request->input($this->username());
 
