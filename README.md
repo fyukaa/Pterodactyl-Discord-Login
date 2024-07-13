@@ -4,16 +4,16 @@
 > #### 1. Drag all the given files in the /var/www/pterodactyl directory.
 
 
-<!-- Downloading required packages --!>
-2. Run `composer require laravel/socialite` in /var/www/pterodactyl.
+### <!-- Downloading required packages --!>
+> #### 2. Run `composer require laravel/socialite` in /var/www/pterodactyl.
 
 
-<!-- Updating the Database --!>
-3. Run `php artisan migrate` in /var/www/pterodactyl.
+### <!-- Updating the Database --!>
+> #### 3. Run `php artisan migrate` in /var/www/pterodactyl.
 
 
-<!-- Creating Discord App --!>
-4. Please create a new Discord application @ https://discordapp.com/developers/applications and configure the OAuth Redirect URL to : "https://my.panel/auth/login/sso"
+### <!-- Creating Discord App --!>
+> #### 4. Please create a new Discord application @ https://discordapp.com/developers/applications and configure the OAuth Redirect URL to : "https://my.panel/auth/login/sso"
 (replace my.panel with your panel domain) with the identify and email permissions.
 
 
