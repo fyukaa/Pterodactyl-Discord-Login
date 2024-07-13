@@ -17,13 +17,13 @@
 (replace my.panel with your panel domain) with the identify and email permissions.
 
 
-<!-- Setting up .env --!>
-5. Open the /var/www/pterodactyl/.env file (this file might be hidden because it has a dot before the name, google: "Your program name: show hidden files".)
+### <!-- Setting up .env --!>
+> #### 5. Open the /var/www/pterodactyl/.env file (this file might be hidden because it has a dot before the name, google: "Your program name: show hidden files".)
    add the following lines on the bottom of your file, and replace the "CLIENT ID" by your "CLIENT ID" generated on the Discord Application. + replace the "CLIENT SECRET" by your "CLIENT SECRET" generated on the Discord Application.
 
 
-DISCORD_CLIENT_ID=your_client_id
-DISCORD_CLIENT_SECRET=your_client_secret
+> #### DISCORD_CLIENT_ID=your_client_id
+> #### DISCORD_CLIENT_SECRET=your_client_secret
 
 
 <!-- Editing LoginController --!>
