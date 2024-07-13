@@ -187,7 +187,7 @@ $username = $request->input($this->username());
 
 
 ### <!-- Editing VerifyReCaptcha --!>
->####7. Open /app/Http/Middleware/VerifyReCaptcha.php
+>#### 7. Open /app/Http/Middleware/VerifyReCaptcha.php
 
 >/app/Http/Middleware/VerifyReCaptcha.php
 >#### replace this codes
@@ -198,152 +198,152 @@ $username = $request->input($this->username());
 
 > #### With this:
 
-if (! $this->config->get('recaptcha.enabled') || $request->filled('discord-sso')) {
-    return $next($request);
-}
+>if (! $this->config->get('recaptcha.enabled') || $request->filled('discord-sso')) {
+>    return $next($request);
+>}
 
 
 
 
-<!-- Editing User --!>
-8. Open /app/Models/User.php
+### <!-- Editing User --!>
+> #### 8. Open /app/Models/User.php
 
-/app/Models/User.php
-Insert this codes
+>/app/Models/User.php
+>Insert this codes
 
-'discord_user_token',
+>'discord_user_token',
 
-Under:
+>#### Under:
 
-'root_admin'
+>'root_admin'
 
 
 
-<!-- Editing AppServiceProvider --!>
-8. Open /app/Providers/AppServiceProvider.php
+### <!-- Editing AppServiceProvider --!>
+>####8. Open /app/Providers/AppServiceProvider.php
 
-/app/Providers/AppServiceProvider.php
-Insert this codes
+>/app/Providers/AppServiceProvider.php
+>#### Insert this codes
 
-use Pterodactyl\Socialite\DiscordProvider;
+> use Pterodactyl\Socialite\DiscordProvider;
 
-Under:
+> #### Under:
 
-use Pterodactyl\Observers\SubuserObserver;
+> use Pterodactyl\Observers\SubuserObserver;
 
 
 
 
-/app/Providers/AppServiceProvider.php
-Insert this codes
+>/app/Providers/AppServiceProvider.php
+>Insert this codes
 
-$socialite = $this->app->make('Laravel\Socialite\Contracts\Factory');
-$socialite->extend(
-    'discord',
-    function ($app) use ($socialite) {
-        $config = $app['config']['services.discord'];
-        return $socialite->buildProvider(DiscordProvider::class, $config);
-    }
-);
+>$socialite = $this->app->make('Laravel\Socialite\Contracts\Factory');
+>$socialite->extend(
+  >  'discord',
+>    function ($app) use ($socialite) {
+  >      $config = $app['config']['services.discord'];
+>        return $socialite->buildProvider(DiscordProvider::class, $config);
+  >  }
+>);
 
-Under:
+>#### Under:
 
-Theme::setSetting('cache-version', md5($this->versionData()['version'] ?? 'undefined'));
+> Theme::setSetting('cache-version', md5($this->versionData()['version'] ?? 'undefined'));
 
 
 
 
-/app/Providers/AppServiceProvider.php
-Replace this codes
+>/app/Providers/AppServiceProvider.php
+>#### Replace this codes
 
-return Cache::remember('git-version', 5, function () {
+>return Cache::remember('git-version', 5, function () {
 
-With This:
+>With This:
 
-return Cache::remember('git-version', now()->addMinutes(5), function () {
+>return Cache::remember('git-version', now()->addMinutes(5), function () {
 
 
 
 
-<!-- Editing app config --!>
-8. Open /config/app.php
+### <!-- Editing app config --!>
+>#### 9. Open /config/app.php
 
-/config/app.php
-Insert this codes
+>/config/app.php
+>#### Insert this codes
 
-Laravel\Socialite\SocialiteServiceProvider::class,
+> Laravel\Socialite\SocialiteServiceProvider::class,
 
-Under:
+>#### Under:
 
-Prologue\Alerts\AlertsServiceProvider::class,
+>Prologue\Alerts\AlertsServiceProvider::class,
 
 
 
 
-/config/app.php
-Insert this codes
+>/config/app.php
+>#### Insert this codes
 
-'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+>'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
-Under:
+> #### Under:
 
-'Storage' => Illuminate\Support\Facades\Storage::class,
+>'Storage' => Illuminate\Support\Facades\Storage::class,
 
 
 
-<!-- Editing auth routes --!>
-8. Open /routes/auth.php
+### <!-- Editing auth routes --!>
+>#### 8. Open /routes/auth.php
 
-/routes/auth.php
-Insert this codes
+>/routes/auth.php
+>#### Insert this codes
 
-Route::get('/login/sso', 'LoginController@handleProviderCallback')->name('auth.login.sso');
+>Route::get('/login/sso', 'LoginController@handleProviderCallback')->name('auth.login.sso');
 
-Under:
+>#### Under:
 
-Route::get('/login/totp', 'LoginController@totp')->name('auth.totp');
+>Route::get('/login/totp', 'LoginController@totp')->name('auth.totp');
 
 
 
 
-<!-- Editing services --!>
-8. Open /config/services.php
+### <!-- Editing services --!>
+>#### 10. Open /config/services.php
 
-/config/services.php
-Insert this codes
+>/config/services.php
+>#### Insert this codes
 
-'discord' => [
-    'client_id' => env('DISCORD_CLIENT_ID'),
-    'client_secret' => env('DISCORD_CLIENT_SECRET'),
-    'redirect' => env('DISCORD_REDIRECT', env('APP_URL') . '/auth/login/sso'),
-],
+>'discord' => [
+>    'client_id' => env('DISCORD_CLIENT_ID'),
+>    'client_secret' => env('DISCORD_CLIENT_SECRET'),
+>    'redirect' => env('DISCORD_REDIRECT', env('APP_URL') . '/auth/login/sso'),
+>],
 
-Under:
+>#### Under:
 
-'sparkpost' => [
-    'secret' => env('SPARKPOST_SECRET'),
-],
+>'sparkpost' => [
+>    'secret' => env('SPARKPOST_SECRET'),
+>],
 
 
 
 
-<!-- Updating the default layout --!>
-8. Open the /resources/themes/pterodactyl/auth/login.blade.php
+### <!-- Updating the default layout --!>
+>#### 11. Open the /resources/themes/pterodactyl/auth/login.blade.php
 
-/resources/themes/pterodactyl/auth/login.blade.php
-Insert This Codes
+>/resources/themes/pterodactyl/auth/login.blade.php
+>#### Insert This Codes
 
-<div class="row">
-    <h4 class="text-center" style="color: #fff;">OR</h4>
-    <div class="col-lg-12 text-center">
-        <form role="form" id="loginWithDiscord" action="{{ route('auth.login') }}" method="POST">
-            @csrf
-            <input type="hidden" name="discord-sso" value="discord-sso">
-            <input type="image" src="https://i.ibb.co/HTCDZW8/discord.png" alt="Login With Discord" style="height: 40px; border-radius: 5px;">
-        </form>
-    </div>
-<div>
+><div class="row">
+>    <h4 class="text-center" style="color: #fff;">OR</h4>
+>    <div class="col-lg-12 text-center">
+>        <form role="form" id="loginWithDiscord" action="{{ route('auth.login') }}" method="POST">
+ >           @csrf
+>            <input type="hidden" name="discord-sso" value="discord-sso">
+>            <input type="image" src="https://i.ibb.co/HTCDZW8/discord.png" alt="Login With Discord" style="height: 40px; border-radius: 5px;">
+ >       </form>
+>    </div>
+><div>
 
-Under
+>#### Under
 
-</form>
+></form>
