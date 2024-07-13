@@ -26,8 +26,8 @@
 > #### DISCORD_CLIENT_SECRET=your_client_secret
 
 
-<!-- Editing LoginController --!>
-6. Open /app/Http/Controllers/Auth/LoginController.php
+### <!-- Editing LoginController --!>
+> #### 6. Open /app/Http/Controllers/Auth/LoginController.php
 
 /app/Http/Controllers/Auth/LoginController.php
 Insert this codes
