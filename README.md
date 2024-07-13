@@ -122,30 +122,30 @@ $username = $request->input($this->username());
 
 
 
-/app/Http/Controllers/Auth/LoginController.php
-Insert this codes
+> /app/Http/Controllers/Auth/LoginController.php
+> #### Insert this codes
 
-public function redirectToProvider()
-{
-    return Socialite::driver('discord')
-        ->setScopes(["identify", "email"])
-        ->redirect();
-}
+> public function redirectToProvider()
+>{
+ >   return Socialite::driver('discord')
+>        ->setScopes(["identify", "email"])
+     >   ->redirect();
+>}
 
-public function handleProviderCallback()
-{
-    try {
-        $user = Socialite::driver('discord')->user();
-    } catch (Exception $e) {
-        return Redirect::to("auth/login");
-    }
+>public function handleProviderCallback()
+>{
+>    try {
+>        $user = Socialite::driver('discord')->user();
+>    } catch (Exception $e) {
+>        return Redirect::to("auth/login");
+>    }
 
-    $authUser = $this->findOrCreateUser($user);
+>    $authUser = $this->findOrCreateUser($user);
 
-    Auth::login($authUser, true);
+>    Auth::login($authUser, true);
 
-    return Redirect::route('index');
-}
+>    return Redirect::route('index');
+>}
 
 /**
  * Return user if exists; create and return if doesn't
@@ -156,47 +156,47 @@ public function handleProviderCallback()
  * @throws \App\Exceptions\Model\DataValidationException
  */
 
-private function findOrCreateUser($discordUser)
-{
-    if ($authUser = $this->repository->findWhere([['discord_user_token', '=', $discordUser->id]])->first()) {
-        return $authUser;
-    }
-    if($authUser = $this->repository->findWhere([['email', '=', $discordUser->email]])->first()) {
-        $authUser->update([
-            'discord_user_token' => $discordUser->id
-        ]);
-        return $authUser;
-    }
+>private function findOrCreateUser($discordUser)
+>{
+>    if ($authUser = $this->repository->findWhere([['discord_user_token', '=', $discordUser->id]])->first()) {
+>        return $authUser;
+>    }
+>    if($authUser = $this->repository->findWhere([['email', '=', $discordUser->email]])->first()) {
+>        $authUser->update([
+>            'discord_user_token' => $discordUser->id
+>        ]);
+>        return $authUser;
+>    }
+>
+>    return $this->creationService->handle([
+>        'username' => $discordUser->name,
+>        'email' => $discordUser->email,
+>        'name_first' => $discordUser->name,
+>        'name_last' => $discordUser->name,
+>        'discord_user_token' => $discordUser->id
+>    ]);
+>}
 
-    return $this->creationService->handle([
-        'username' => $discordUser->name,
-        'email' => $discordUser->email,
-        'name_first' => $discordUser->name,
-        'name_last' => $discordUser->name,
-        'discord_user_token' => $discordUser->id
-    ]);
+>#### Under:
+
+>private function fireFailedLoginEvent(Authenticatable $user = null, array $credentials = [])
+>{
+>    event(new Failed(config('auth.defaults.guard'), $user, $credentials));
+>}
+
+
+
+### <!-- Editing VerifyReCaptcha --!>
+>####7. Open /app/Http/Middleware/VerifyReCaptcha.php
+
+>/app/Http/Middleware/VerifyReCaptcha.php
+>#### replace this codes
+
+>if (! $this->config->get('recaptcha.enabled') {
+>    return $next($request);
 }
 
-Under:
-
-private function fireFailedLoginEvent(Authenticatable $user = null, array $credentials = [])
-{
-    event(new Failed(config('auth.defaults.guard'), $user, $credentials));
-}
-
-
-
-<!-- Editing VerifyReCaptcha --!>
-7. Open /app/Http/Middleware/VerifyReCaptcha.php
-
-/app/Http/Middleware/VerifyReCaptcha.php
-replace this codes
-
-if (! $this->config->get('recaptcha.enabled') {
-    return $next($request);
-}
-
-With this:
+> #### With this:
 
 if (! $this->config->get('recaptcha.enabled') || $request->filled('discord-sso')) {
     return $next($request);
