@@ -50,34 +50,34 @@
     
 >use Laravel\Socialite\Facades\Socialite;
 
->####Under
+>#### Under:
 
 >use Illuminate\Auth\AuthManager;
 
 
 
 
-/app/Http/Controllers/Auth/LoginController.php
-Insert this codes
+>/app/Http/Controllers/Auth/LoginController.php
+>Insert this codes
 
 /**
  * @var \App\Services\Users\UserCreationService
  */
-protected $creationService;
+>protected $creationService;
 
-Under:
+> #### Under:
 
-protected $maxAttempts;
-
-
+>protected $maxAttempts;
 
 
-/app/Http/Controllers/Auth/LoginController.php
-Insert this codes
 
-UserCreationService $creationService
 
-Under:
+>/app/Http/Controllers/Auth/LoginController.php
+> #### Insert this codes
+
+> UserCreationService $creationService
+
+> #### Under:
 
 UserRepositoryInterface $repository,
 
