@@ -29,30 +29,30 @@
 ### <!-- Editing LoginController --!>
 > #### 6. Open /app/Http/Controllers/Auth/LoginController.php
 
-/app/Http/Controllers/Auth/LoginController.php
-Insert this codes
+> /app/Http/Controllers/Auth/LoginController.php
+> Insert this codes
     
-use Illuminate\Support\Str;
-use Pterodactyl\Services\Users\UserCreationService;
-use Illuminate\Support\Facades\Auth;    
-use Illuminate\Support\Facades\Redirect;
-use Pterodactyl\Models\User;
+>use Illuminate\Support\Str;
+>use Pterodactyl\Services\Users\UserCreationService;
+>use Illuminate\Support\Facades\Auth;    
+>use Illuminate\Support\Facades\Redirect;
+>use Pterodactyl\Models\User;
 
-Above: 
+> #### Above: 
 
-use Illuminate\Http\Request;
-
-
+> use Illuminate\Http\Request;
 
 
-/app/Http/Controllers/Auth/LoginController.php
-Insert this codes
+
+
+> /app/Http/Controllers/Auth/LoginController.php
+> Insert this codes
     
-use Laravel\Socialite\Facades\Socialite;
+>use Laravel\Socialite\Facades\Socialite;
 
-Under
+>####Under
 
-use Illuminate\Auth\AuthManager;
+>use Illuminate\Auth\AuthManager;
 
 
 
